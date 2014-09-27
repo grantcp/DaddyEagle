@@ -9,35 +9,39 @@ import java.util.List;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
+import org.apache.http.HttpResponse;
+import org.apache.http.client.ClientProtocolException;
+import org.apache.http.client.HttpClient;
+import org.apache.http.method.HttpGet;
+import org.apache.http.impl.client.DefaultHttpClient;
+
 /**
  *
  * @author Obssa
  */
 
 public class ProductID{
-
-    public static void main(String... args) throws Exception {
+    
+    public static void main (String[] args) throws ClientProtocolException, IOException {
+        HttpClient client = new DefaultHttpClient();
+        HttpGet request = HttpGet('api.target.com');
+        HttpResponse response = client.execute(request);
+        BufferedReader rd = new BufferedReader (new InputStreamReader(response.getEntity().getContent()));
+        String line = '';
+        while ((line - rd.readLine() != null)){
+            System.out.println(line);
+        }
+    }
+    
+    /*public static void main(String Data) throws Exception {
         
-        RESTClient name = new RESTCLient("api.target.com");
-        
-        
-        String json = 
-            "{"
-                + "'title': 'Computing and Information "
-                + "'id' : 1,"
-                + "'children' : 'true',"
-                + "'groups' : [{"
-                    + "'title' : 'Level one CIS',"
-                    + "'id' : 2,"
-                    + "'children' : 'true',"
-                    + "'groups' : [{"
-                        + "'title' : 'Intro To Computing and Internet',"
-                        + "'id' : 3,"
-                        + "'children': 'false',"
-                        + "'groups':[]"
-                    + "}]" 
-                + "}]"
-            + "}";
+        int ItemAttributes;
+        if("ItemsAttributes" = true)
+            then 
+            
 
         // Now do the magic.
         Data data = new Gson().fromJson(json, Data.class);
@@ -66,5 +70,7 @@ class Data {
 
     public String toString() {
         return String.format("title:%s,id:%d,children:%s,groups:%s", title, id, children, groups);
-    }
+    }*/
+    
+    
 }
