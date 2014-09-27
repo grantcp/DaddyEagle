@@ -17,19 +17,22 @@ import java.awt.event.WindowListener;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
-import javax.swing.JTextField;
 
 public class ShoppingList extends JFrame {
 
 	ShoppingList() {
 		JPanel board = new JPanel(new BorderLayout());
-		JLabel listName = new JLabel("What I Want!");
-		JTextField item = new JTextField();
+		JLabel listName = new JLabel("MY SHOPPING LIST");
+		ShoppingListPanel list = new ShoppingListPanel();
 		
+                listName.setHorizontalAlignment(JLabel.CENTER);
+                
 		board.add(listName, BorderLayout.NORTH);
-		board.add(item,BorderLayout.CENTER);
+		board.add(list,BorderLayout.CENTER);
 		
 		getContentPane().add(board);
+                
+                
 		
 		this.setResizable(true);
 	}
