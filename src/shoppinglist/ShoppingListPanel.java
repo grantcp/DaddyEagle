@@ -11,6 +11,7 @@ import javax.swing.JTextField;
 import java.awt.GridLayout;
 import java.awt.BorderLayout;
 import java.awt.Dimension;
+import java.awt.Font;
 
 /**
  *
@@ -36,9 +37,10 @@ public class ShoppingListPanel extends JPanel {
         //Create label panel
         labelPanel = new JPanel(new GridLayout(LIST_SIZE,1));
         for (int i = 0; i < LIST_SIZE; i++) {
-            labelArray[i] = new JLabel(Integer.toString(i+1));
-            labelArray[i].setPreferredSize(new Dimension(20,20));
+            labelArray[i] = new JLabel("Item " + Integer.toString(i+1));
+            labelArray[i].setPreferredSize(new Dimension(100,40));
             labelArray[i].setHorizontalAlignment(JLabel.CENTER);
+            labelArray[i].setFont(new Font("Serif",Font.BOLD,30));
             labelPanel.add(labelArray[i]);
         }
         
@@ -46,7 +48,8 @@ public class ShoppingListPanel extends JPanel {
         textPanel = new JPanel(new GridLayout(LIST_SIZE,1));
         for (int j = 0; j < LIST_SIZE; j++) {
             textArray[j] = new JTextField();
-            textArray[j].setPreferredSize(new Dimension(100,20));
+            textArray[j].setPreferredSize(new Dimension(400,40));
+            textArray[j].setFont(new Font("Serif",Font.BOLD,30));
             textPanel.add(textArray[j]);
         }
         
