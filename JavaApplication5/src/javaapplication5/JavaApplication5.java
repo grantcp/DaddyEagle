@@ -1,4 +1,4 @@
-/*
+/*SHIEEEEEEEEEEEEEEEEEEEEEEEEEEETTTTTT
  * To change this license header, choose License Headers in Project Properties.
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
@@ -17,6 +17,10 @@ import com.google.gson.GsonBuilder;
 public class JavaApplication5{
 
     public static void main(String... args) throws Exception {
+        
+        RESTClient name = new RESTCLient("api.target.com");
+        
+        
         String json = 
             "{"
                 + "'title': 'Computing and Information "
