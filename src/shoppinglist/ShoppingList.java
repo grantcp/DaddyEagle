@@ -9,13 +9,44 @@ package shoppinglist;
  *
  * @author awershow
  */
-public class ShoppingList {
+import java.awt.BorderLayout;
+import java.awt.event.WindowAdapter;
+import java.awt.event.WindowEvent;
+import java.awt.event.WindowListener;
 
-    /**
-     * @param args the command line arguments
-     */
-    public static void main(String[] args) {
-        // TODO code application logic here
-    }
-    
+import javax.swing.JFrame;
+import javax.swing.JLabel;
+import javax.swing.JPanel;
+import javax.swing.JTextField;
+
+public class ShoppingList extends JFrame {
+
+	ShoppingList() {
+		JPanel board = new JPanel(new BorderLayout());
+		JLabel listName = new JLabel("What I Want!");
+		JTextField item = new JTextField();
+		
+		board.add(listName, BorderLayout.NORTH);
+		board.add(item,BorderLayout.CENTER);
+		
+		getContentPane().add(board);
+		
+		this.setResizable(true);
+	}
+
+	//Main
+	public static void main(String[] args) {
+		ShoppingList shopper = new ShoppingList();
+		shopper.setTitle("Shopping List");
+		WindowListener l = new WindowAdapter() {
+			@Override
+			public void windowClosing(WindowEvent e) {
+				System.exit(0);
+			}
+		};
+		shopper.addWindowListener(l);
+		shopper.pack();
+		shopper.setVisible(true);
+	}
+
 }
