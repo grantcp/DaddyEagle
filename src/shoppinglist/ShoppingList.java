@@ -10,6 +10,8 @@ package shoppinglist;
  * @author awershow
  */
 import java.awt.BorderLayout;
+import java.awt.Dimension;
+import java.awt.GridLayout;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
 import java.awt.event.WindowListener;
@@ -20,6 +22,7 @@ import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JButton;
+import javax.swing.JTextField;
 
 import targetAPICalls.TargetCall;
 import targetParser.*;
@@ -27,14 +30,18 @@ import targetParser.*;
 public class ShoppingList extends JFrame implements ActionListener {
 
     private LocationPanel location;
-    ShoppingListPanel list;
+    private JTextField zipField;
+    private ShoppingListPanel list;
     private String[] listOfItems;
+    private String zipCode;
     
     ShoppingList() {
         //Create panels
 	JPanel board = new JPanel();
         JPanel listPanel = new JPanel(new BorderLayout());
         JPanel storePanel = new JPanel(new BorderLayout());
+        JPanel zipPanel = new JPanel();
+        JPanel userPanel = new JPanel(new GridLayout(2,1));
         
         //Create list panel
  	JLabel listName = new JLabel("MY SHOPPING LIST");
@@ -50,9 +57,19 @@ public class ShoppingList extends JFrame implements ActionListener {
         findStore.setFont(new Font("Serif",Font.BOLD,40));
         findStore.setActionCommand("findStore");
         findStore.addActionListener(this);
+        JLabel lblZip = new JLabel("Your Zip Code:");
+        lblZip.setHorizontalAlignment(JLabel.RIGHT);
+        lblZip.setFont(new Font("Serif",Font.BOLD,30));
+        zipField = new JTextField();
+        zipField.setFont(new Font("Serif",Font.BOLD,30));
+        zipField.setPreferredSize(new Dimension(200,40));
         location = new LocationPanel();
         
-        storePanel.add(findStore,BorderLayout.NORTH);
+        zipPanel.add(lblZip);
+        zipPanel.add(zipField);
+        userPanel.add(zipPanel);
+        userPanel.add(findStore);
+        storePanel.add(userPanel,BorderLayout.NORTH);
         storePanel.add(location,BorderLayout.CENTER);
 		
 	board.add(listPanel);
@@ -71,6 +88,8 @@ public class ShoppingList extends JFrame implements ActionListener {
                 for (int i = 0; i < ShoppingListPanel.LIST_SIZE; i++) {
                     listOfItems[i] = list.getItem(i);
                 }
+                zipCode = zipField.getText();
+                System.out.println("Zip Code: " + zipCode);
                 
                 //Target API queries & parsing here!
                 for (int j = 0; j < ShoppingListPanel.LIST_SIZE; j++) {
