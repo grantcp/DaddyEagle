@@ -29,24 +29,12 @@ public class ProductParser{
 			int position = 0;
 			int count = 0;
 
-
-			temp = data.substring(data.indexOf("description"));
-				count = count + 15;
-					while(temp.charAt(count) != '"')
-					{
-						partName = partName + temp.charAt(count);
-						count++;
-					}	
+			temp = data.substring(data.indexOf("DPCI")+8);
+                        partNo = temp.substring(0,temp.indexOf(",")-1);
 
 			count = 0;
 
-			temp = temp.substring(data.indexOf("partNumber"));
-				count = count + 14;
-					while(temp.charAt(count) != '"')
-					{
-						partNo = partNo + temp.charAt(count);
-						count++;
-					}		
-
+                        temp = data.substring(data.indexOf("description")+31);
+                        partName = temp.substring(0,temp.indexOf(",")-1);
 	}
 }
