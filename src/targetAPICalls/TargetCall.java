@@ -34,7 +34,7 @@ public class TargetCall {
         
         try {
             HttpClient client = new DefaultHttpClient();
-            HttpGet request = new HttpGet("https://api.target.com/v2/products/search?searchTerm="+term+"&key=J5PsS2XGuqCnkdQq0Let6RSfvU7oyPwF");
+            HttpGet request = new HttpGet("https://api.target.com/v2/products/search?searchTerm="+term+"&pagenumber=1&key=J5PsS2XGuqCnkdQq0Let6RSfvU7oyPwF");
             HttpResponse response = client.execute(request);
             BufferedReader rd = new BufferedReader (new InputStreamReader(response.getEntity().getContent()));
             temp = rd.readLine();
