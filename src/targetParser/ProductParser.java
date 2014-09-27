@@ -34,7 +34,11 @@ public class ProductParser{
 
 			count = 0;
 
-                        temp = data.substring(data.indexOf("description")+31);
-                        partName = temp.substring(0,temp.indexOf(",")-1);
+                        temp = data.substring(data.indexOf("description"));
+                        temp = temp.substring(0,temp.indexOf(",")-1);
+                        while (temp.indexOf("\\u")>0) {
+                            temp = temp.substring(temp.indexOf("\\u")+7);
+                        }
+                        partName = temp;
 	}
 }
