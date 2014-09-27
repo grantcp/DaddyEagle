@@ -25,7 +25,7 @@ public class ShoppingListPanel extends JPanel {
     private  JTextField[] textArray;
     
     //Size of list
-    private static int LIST_SIZE = 10;
+    public static int LIST_SIZE = 10;
     
     //Constructor
     public ShoppingListPanel() {
@@ -56,5 +56,9 @@ public class ShoppingListPanel extends JPanel {
         //Add sub-panels to main panel
         this.add(labelPanel,BorderLayout.WEST);
         this.add(textPanel,BorderLayout.CENTER);
+    }
+    
+    public String getItem(int index) {
+        return textArray[index].getText();
     }
 }
