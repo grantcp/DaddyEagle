@@ -23,6 +23,7 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JButton;
 import javax.swing.JTextField;
+import targetAPICalls.TargetAvail;
 
 import targetAPICalls.TargetCall;
 import targetParser.*;
@@ -105,7 +106,7 @@ public class ShoppingList extends JFrame implements ActionListener {
                     listOfItemNames[i] = list.getItem(i);
                 }
                 zipCode = zipField.getText();
-                System.out.println("Zip Code: " + zipCode);
+                //System.out.println("Zip Code: " + zipCode);
                 
                 //Target API queries & parsing here!
                 for (int j = 0; j < ShoppingListPanel.LIST_SIZE; j++) {
@@ -115,8 +116,8 @@ public class ShoppingList extends JFrame implements ActionListener {
                         list.setItem(j, pParser.getPartName());
                         listOfItemNames[j] = pParser.getPartName();
                         listOfItemNums[j] = pParser.getPartNo();
-                        System.out.println("PartNo: " + pParser.getPartNo());
-                        System.out.println("PartName: " + pParser.getPartName());
+                        //System.out.println("PartNo: " + pParser.getPartNo());
+                        //System.out.println("PartName: " + pParser.getPartName());
                     }
                 }
                 if (!zipCode.equalsIgnoreCase("")) {
@@ -126,20 +127,28 @@ public class ShoppingList extends JFrame implements ActionListener {
                     for (int k = 0; k < 10; k++) {
                         temp = lParser.parser(temp);
                         listOfStores[k] = lParser.getID();
-                        listOfStoreNames[k] = lParser.getID();
+                        listOfStoreNames[k] = lParser.getName();
                         listOfStoreAddresses[k] = lParser.getAddress();
                         listOfStoreCities[k] = lParser.getCity();
                         listOfStoreStates[k] = lParser.getState();
                         listOfStoreZips[k] = lParser.getZip();
-                        System.out.println("Store ID: " + lParser.getID());
-                        System.out.println("Store Name: " + lParser.getName());
-                        System.out.println("Store Address: " + lParser.getAddress());
-                        System.out.println("Store City: " + lParser.getCity());
-                        System.out.println("Store State: " + lParser.getState());
-                        System.out.println("Store Zip: " + lParser.getZip());
+                        //System.out.println("Store ID: " + lParser.getID());
+                        //System.out.println("Store Name: " + lParser.getName());
+                        //System.out.println("Store Address: " + lParser.getAddress());
+                        //System.out.println("Store City: " + lParser.getCity());
+                        //System.out.println("Store State: " + lParser.getState());
+                        //System.out.println("Store Zip: " + lParser.getZip());
                     } 
-                    //lParser.test(temp);
+                
+                    //Find optimal store
+                    optimalStore storeChecker = new optimalStore();
+                    storeChecker.optimal(listOfStores, listOfItemNums);
+                    int best = storeChecker.getOpIndex();
                     
+                    //Display optimal store
+                    location.setName(listOfStoreNames[best]);
+                    location.setAddresss(listOfStoreAddresses[best]);
+                    location.setCityStateZip(listOfStoreCities[best], listOfStoreStates[best], listOfStoreZips[best]);
                 }
                
                 //Repaint

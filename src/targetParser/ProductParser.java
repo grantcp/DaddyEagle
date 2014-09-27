@@ -29,7 +29,7 @@ public class ProductParser{
 			int position = 0;
 			int count = 0;
                         
-                        System.out.println(data);
+                        //System.out.println(data);
 			temp = data.substring(data.indexOf("DPCI")+8);
                         partNo = temp.substring(0,temp.indexOf(",")-1);
 

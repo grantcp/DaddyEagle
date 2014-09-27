@@ -48,22 +48,22 @@ public class LocationPanel extends JPanel {
         //Construct subpanels
         namePanel = new JPanel();
         actName = new JLabel("[FIND ME]");
-        actName.setPreferredSize(new Dimension(200,40));
-        actName.setFont(new Font("Serif",Font.BOLD,30));
+        actName.setPreferredSize(new Dimension(300,40));
+        actName.setFont(new Font("Serif",Font.BOLD,20));
         namePanel.add(lblName);
         namePanel.add(actName);
         
         addressPanel = new JPanel();
         actAddress = new JLabel("[FIND ME]");
-        actAddress.setPreferredSize(new Dimension(200,40));
-        actAddress.setFont(new Font("Serif",Font.BOLD,30));
+        actAddress.setPreferredSize(new Dimension(300,40));
+        actAddress.setFont(new Font("Serif",Font.BOLD,20));
         addressPanel.add(lblAddress);
         addressPanel.add(actAddress);
         
         cityStateZipPanel = new JPanel();
         actCityStateZip = new JLabel("[FIND ME]");
-        actCityStateZip.setPreferredSize(new Dimension(200,40));
-        actCityStateZip.setFont(new Font("Serif",Font.BOLD,30));
+        actCityStateZip.setPreferredSize(new Dimension(300,40));
+        actCityStateZip.setFont(new Font("Serif",Font.BOLD,20));
         cityStateZipPanel.add(lblCityStateZip);
         cityStateZipPanel.add(actCityStateZip);
         
