@@ -8,8 +8,8 @@ int count;
 public void storeInfo(String data){
 	count = 0;
 
-	temp = substring(data.indexOf("<ID>"))
-	{
+	temp = substring(data.indexOf("<ID>"));
+	
 		count = count + 4;
 		if(temp.charAt(count)!='T')
 		{
@@ -22,14 +22,11 @@ public void storeInfo(String data){
 		}
 				
 			
-	}
+	
 
 	count = 0;
 
-	temp = substring(temp.indexOf("<Name>"))
-	if(temp.charAt(count)=='<')
-	{
-
+	temp = substring(temp.indexOf("<Name>"));
 		count = count + 6;
 		while(temp.charAt(count) != '<')
 		{
@@ -37,13 +34,10 @@ public void storeInfo(String data){
 			count++;
 		}
 						
-	}
 
 	count = 0;
 
-	temp = substring(temp.indexOf("<FormattedAddress>"))
-	if(temp.charAt(count)=='<')
-	{
+	temp = substring(temp.indexOf("<FormattedAddress>"));
 
 		count = count + 18;
 		while(temp.charAt(count) != '<')
@@ -51,8 +45,6 @@ public void storeInfo(String data){
 			address = address + temp.charAt(count);
 			count++;
 		}
-								
-	}
 
 	Stores[position]= new store(ID, name, address);
 	position++;
