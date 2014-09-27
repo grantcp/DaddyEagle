@@ -40,7 +40,7 @@ public class ShoppingListPanel extends JPanel {
             labelArray[i] = new JLabel("Item " + Integer.toString(i+1));
             labelArray[i].setPreferredSize(new Dimension(100,40));
             labelArray[i].setHorizontalAlignment(JLabel.CENTER);
-            labelArray[i].setFont(new Font("Serif",Font.BOLD,30));
+            labelArray[i].setFont(new Font("Serif",Font.BOLD,20));
             labelPanel.add(labelArray[i]);
         }
         
@@ -49,7 +49,7 @@ public class ShoppingListPanel extends JPanel {
         for (int j = 0; j < LIST_SIZE; j++) {
             textArray[j] = new JTextField();
             textArray[j].setPreferredSize(new Dimension(400,40));
-            textArray[j].setFont(new Font("Serif",Font.BOLD,30));
+            textArray[j].setFont(new Font("Serif",Font.BOLD,20));
             textPanel.add(textArray[j]);
         }
         
