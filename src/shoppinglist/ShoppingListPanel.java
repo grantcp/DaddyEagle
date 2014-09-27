@@ -61,4 +61,9 @@ public class ShoppingListPanel extends JPanel {
     public String getItem(int index) {
         return textArray[index].getText();
     }
+    
+    public void setItem(int index, String name) {
+        if (name != null)
+            textArray[index].setText(name);
+    }
 }
