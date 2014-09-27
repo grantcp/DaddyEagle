@@ -32,7 +32,7 @@ public class optimalStore{
 			{
 				for(int j=0; j<shoppingList.length;j++)
 				{
-					if(StoreParser(TargetAvail(storeIds[i], shoppingList[j])))
+					if(TargetAvail.getTargetAvail(storeIds[i], shoppingList[j]).isEmpty())
 					{
 						opProdCount++;
 						if(opProdCount>opProd)

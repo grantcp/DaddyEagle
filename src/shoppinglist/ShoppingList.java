@@ -32,8 +32,15 @@ public class ShoppingList extends JFrame implements ActionListener {
     private LocationPanel location;
     private JTextField zipField;
     private ShoppingListPanel list;
-    private String[] listOfItems;
+    private String[] listOfItemNames;
+    private String[] listOfItemNums;
     private String zipCode;
+    private String[] listOfStores;
+    private String[] listOfStoreNames;
+    private String[] listOfStoreAddresses;
+    private String[] listOfStoreCities;
+    private String[] listOfStoreStates;
+    private String[] listOfStoreZips;
     
     ShoppingList() {
         //Create panels
@@ -83,24 +90,57 @@ public class ShoppingList extends JFrame implements ActionListener {
         public void actionPerformed(ActionEvent e) {
             //Perform actions if the findStore button was clicked
             if (e.getActionCommand().equalsIgnoreCase("findStore")) {
+                //Declarations
+                listOfItemNames = new String[ShoppingListPanel.LIST_SIZE];
+                listOfItemNums = new String[ShoppingListPanel.LIST_SIZE];
+                listOfStores = new String[10];
+                listOfStoreNames = new String[10];
+                listOfStoreAddresses = new String[10];
+                listOfStoreCities = new String[10];
+                listOfStoreStates = new String[10];
+                listOfStoreZips = new String[10];
+
                 //Pull items from shopping list
-                listOfItems = new String[ShoppingListPanel.LIST_SIZE];
                 for (int i = 0; i < ShoppingListPanel.LIST_SIZE; i++) {
-                    listOfItems[i] = list.getItem(i);
+                    listOfItemNames[i] = list.getItem(i);
                 }
                 zipCode = zipField.getText();
                 System.out.println("Zip Code: " + zipCode);
                 
                 //Target API queries & parsing here!
                 for (int j = 0; j < ShoppingListPanel.LIST_SIZE; j++) {
-                    if (!listOfItems[j].equalsIgnoreCase("")) {
-                        ProductParser pParser = new ProductParser(TargetCall.getTargetProduct(listOfItems[j]));
+                    //Get product names & #s
+                    if (!listOfItemNames[j].equalsIgnoreCase("")) {
+                        ProductParser pParser = new ProductParser(TargetCall.getTargetProduct(listOfItemNames[j]));
                         list.setItem(j, pParser.getPartName());
+                        listOfItemNames[j] = pParser.getPartName();
+                        listOfItemNums[j] = pParser.getPartNo();
                         System.out.println("PartNo: " + pParser.getPartNo());
                         System.out.println("PartName: " + pParser.getPartName());
                     }
                 }
-                
+                if (!zipCode.equalsIgnoreCase("")) {
+                    String temp = TargetCall.getTargetLocation(zipCode);
+                    LocationParser lParser = new LocationParser();
+                    //Get ten nearest locations
+                    for (int k = 0; k < 10; k++) {
+                        temp = lParser.parser(temp);
+                        listOfStores[k] = lParser.getID();
+                        listOfStoreNames[k] = lParser.getID();
+                        listOfStoreAddresses[k] = lParser.getAddress();
+                        listOfStoreCities[k] = lParser.getCity();
+                        listOfStoreStates[k] = lParser.getState();
+                        listOfStoreZips[k] = lParser.getZip();
+                        System.out.println("Store ID: " + lParser.getID());
+                        System.out.println("Store Name: " + lParser.getName());
+                        System.out.println("Store Address: " + lParser.getAddress());
+                        System.out.println("Store City: " + lParser.getCity());
+                        System.out.println("Store State: " + lParser.getState());
+                        System.out.println("Store Zip: " + lParser.getZip());
+                        
+                    }
+                }
+               
                 //Repaint
                 this.repaint();
             }

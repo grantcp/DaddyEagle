@@ -40,16 +40,39 @@ public class TargetCall {
         return result.toString();
     }   
     
-    //Get Product ID
+    //Get Product
     public static String getTargetProduct(String term) {
         //Declarations
         StringBuilder result = new StringBuilder("");
         String temp = null;
         String convertedTerm = swapSpaceWithComma(term);
-        System.out.println("term: "+convertedTerm);
+        //System.out.println("term: "+convertedTerm);
         try {
             HttpClient client = new DefaultHttpClient();
             HttpGet request = new HttpGet("https://api.target.com/v2/products/search?searchTerm="+convertedTerm+"&pagenumber=1&key=J5PsS2XGuqCnkdQq0Let6RSfvU7oyPwF");
+            HttpResponse response = client.execute(request);
+            BufferedReader rd = new BufferedReader (new InputStreamReader(response.getEntity().getContent()));
+            temp = rd.readLine();
+            while (temp != null){
+                result.append(temp);
+                //System.out.println(temp);
+                temp = rd.readLine();
+            }
+        } catch (IOException e) {
+            System.out.println(e.toString());
+        }
+        
+        return result.toString();
+    }
+
+    //Get Location
+    public static String getTargetLocation(String zip) {
+        //Declarations
+        StringBuilder result = new StringBuilder("");
+        String temp = null;
+        try {
+            HttpClient client = new DefaultHttpClient();
+            HttpGet request = new HttpGet("http://api.target.com/v2/store?nearby="+zip+"&range=100&limit=10&locale=en-US&&key=J5PsS2XGuqCnkdQq0Let6RSfvU7oyPwF");
             HttpResponse response = client.execute(request);
             BufferedReader rd = new BufferedReader (new InputStreamReader(response.getEntity().getContent()));
             temp = rd.readLine();
