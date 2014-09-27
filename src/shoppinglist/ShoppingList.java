@@ -73,9 +73,14 @@ public class ShoppingList extends JFrame implements ActionListener {
                 }
                 
                 //Target API queries & parsing here!
-                ProductParser pParser = new ProductParser(TargetCall.getTargetProduct(listOfItems[0]));
-                System.out.println("PartNo: " + pParser.getPartNo());
-                System.out.println("PartName: " + pParser.getPartName());
+                for (int j = 0; j < ShoppingListPanel.LIST_SIZE; j++) {
+                    if (!listOfItems[j].equalsIgnoreCase("")) {
+                        ProductParser pParser = new ProductParser(TargetCall.getTargetProduct(listOfItems[j]));
+                        list.setItem(j, pParser.getPartName());
+                        System.out.println("PartNo: " + pParser.getPartNo());
+                        System.out.println("PartName: " + pParser.getPartName());
+                    }
+                }
                 
                 //Repaint
                 this.repaint();
