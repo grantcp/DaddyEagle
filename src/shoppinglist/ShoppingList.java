@@ -25,12 +25,14 @@ public class ShoppingList extends JFrame {
 		JPanel board = new JPanel(new BorderLayout());
 		JLabel listName = new JLabel("MY SHOPPING LIST");
 		ShoppingListPanel list = new ShoppingListPanel();
+                LocationPanel location = new LocationPanel();
 		
                 listName.setHorizontalAlignment(JLabel.CENTER);
                 listName.setFont(new Font("Serif",Font.BOLD,40));
                 
 		board.add(listName, BorderLayout.NORTH);
 		board.add(list,BorderLayout.CENTER);
+                board.add(location,BorderLayout.EAST);
 		
 		getContentPane().add(board);
 		
