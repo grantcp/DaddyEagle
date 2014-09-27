@@ -13,30 +13,44 @@ import java.awt.BorderLayout;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
 import java.awt.event.WindowListener;
+import java.awt.Font;
 
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
-import java.awt.Font;
+import javax.swing.JButton;
 
 public class ShoppingList extends JFrame {
 
-	ShoppingList() {
-		JPanel board = new JPanel(new BorderLayout());
-		JLabel listName = new JLabel("MY SHOPPING LIST");
-		ShoppingListPanel list = new ShoppingListPanel();
-                LocationPanel location = new LocationPanel();
+    ShoppingList() {
+        //Create panels
+	JPanel board = new JPanel();
+        JPanel listPanel = new JPanel(new BorderLayout());
+        JPanel storePanel = new JPanel(new BorderLayout());
+        
+        //Create list panel
+ 	JLabel listName = new JLabel("MY SHOPPING LIST");
+        listName.setHorizontalAlignment(JLabel.CENTER);
+        listName.setFont(new Font("Serif",Font.BOLD,40));
+        ShoppingListPanel list = new ShoppingListPanel();
+        
+        listPanel.add(listName,BorderLayout.NORTH);
+        listPanel.add(list,BorderLayout.CENTER);
+        
+        //Create store panel
+        JButton findStore = new JButton("Find my best store!");
+        findStore.setFont(new Font("Serif",Font.BOLD,40));
+        LocationPanel location = new LocationPanel();
+        
+        storePanel.add(findStore,BorderLayout.NORTH);
+        storePanel.add(location,BorderLayout.CENTER);
 		
-                listName.setHorizontalAlignment(JLabel.CENTER);
-                listName.setFont(new Font("Serif",Font.BOLD,40));
-                
-		board.add(listName, BorderLayout.NORTH);
-		board.add(list,BorderLayout.CENTER);
-                board.add(location,BorderLayout.EAST);
+	board.add(listPanel);
+        board.add(storePanel);
 		
-		getContentPane().add(board);
+	getContentPane().add(board);
 		
-		this.setResizable(true);
+	this.setResizable(true);
 	}
 
 	//Main
