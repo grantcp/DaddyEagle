@@ -72,4 +72,16 @@ public class LocationPanel extends JPanel {
         this.add(addressPanel);
         this.add(cityStateZipPanel);
     }
+    
+    public void setName(String storeName) {
+        actName.setText(storeName);
+    }
+
+    public void setAddresss(String address) {
+        actAddress.setText(address);
+    }
+
+    public void setCityStateZip(String city, String state, String zip) {
+        actCityStateZip.setText(city + ", " + state + "  " + zip);
+    }
 }
