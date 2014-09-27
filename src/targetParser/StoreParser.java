@@ -1,5 +1,8 @@
 package targetParser;
 
+
+
+
 public class StoreParser{
 
     String status;
