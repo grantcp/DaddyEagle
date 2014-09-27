@@ -17,6 +17,7 @@ import java.awt.event.WindowListener;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
+import java.awt.Font;
 
 public class ShoppingList extends JFrame {
 
@@ -26,13 +27,12 @@ public class ShoppingList extends JFrame {
 		ShoppingListPanel list = new ShoppingListPanel();
 		
                 listName.setHorizontalAlignment(JLabel.CENTER);
+                listName.setFont(new Font("Serif",Font.BOLD,40));
                 
 		board.add(listName, BorderLayout.NORTH);
 		board.add(list,BorderLayout.CENTER);
 		
 		getContentPane().add(board);
-                
-                
 		
 		this.setResizable(true);
 	}
