@@ -137,8 +137,9 @@ public class ShoppingList extends JFrame implements ActionListener {
                         System.out.println("Store City: " + lParser.getCity());
                         System.out.println("Store State: " + lParser.getState());
                         System.out.println("Store Zip: " + lParser.getZip());
-                        
-                    }
+                    } 
+                    //lParser.test(temp);
+                    
                 }
                
                 //Repaint
