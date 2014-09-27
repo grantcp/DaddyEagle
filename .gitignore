@@ -9,3 +9,5 @@
 //def resp = name.get(path:/v2/products/search); //Actual path, add /:*parameter* after item
 
 //
+/ProductID/nbproject/private/
+/ProductID/build/
