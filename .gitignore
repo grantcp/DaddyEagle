@@ -1,0 +1,11 @@
+
+
+//import java.util.List;
+
+//RESTClient name = new RESTClient("api.target.com");
+
+//format = name.headers.Accept = "application/json";
+
+//def resp = name.get(path:/v2/products/search); //Actual path, add /:*parameter* after item
+
+//
