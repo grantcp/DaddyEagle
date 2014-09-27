@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package ProductID;
+package productid;
 
 import java.util.List;
 import com.google.gson.Gson;
@@ -27,7 +27,7 @@ public class ProductID{
     
     public static void main (String[] args) throws ClientProtocolException, IOException {
         HttpClient client = new DefaultHttpClient();
-        HttpGet request = HttpGet('api.target.com');
+        HttpGet request = HttpGet("api.target.com");
         HttpResponse response = client.execute(request);
         BufferedReader rd = new BufferedReader (new InputStreamReader(response.getEntity().getContent()));
         String line = '';
