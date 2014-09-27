@@ -14,14 +14,19 @@ import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
 import java.awt.event.WindowListener;
 import java.awt.Font;
+import java.awt.event.*;
 
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JButton;
 
-public class ShoppingList extends JFrame {
+public class ShoppingList extends JFrame implements ActionListener {
 
+    private LocationPanel location;
+    ShoppingListPanel list;
+    private String[] listOfItems;
+    
     ShoppingList() {
         //Create panels
 	JPanel board = new JPanel();
@@ -32,7 +37,7 @@ public class ShoppingList extends JFrame {
  	JLabel listName = new JLabel("MY SHOPPING LIST");
         listName.setHorizontalAlignment(JLabel.CENTER);
         listName.setFont(new Font("Serif",Font.BOLD,40));
-        ShoppingListPanel list = new ShoppingListPanel();
+        list = new ShoppingListPanel();
         
         listPanel.add(listName,BorderLayout.NORTH);
         listPanel.add(list,BorderLayout.CENTER);
@@ -40,7 +45,9 @@ public class ShoppingList extends JFrame {
         //Create store panel
         JButton findStore = new JButton("Find my best store!");
         findStore.setFont(new Font("Serif",Font.BOLD,40));
-        LocationPanel location = new LocationPanel();
+        findStore.setActionCommand("findStore");
+        findStore.addActionListener(this);
+        location = new LocationPanel();
         
         storePanel.add(findStore,BorderLayout.NORTH);
         storePanel.add(location,BorderLayout.CENTER);
@@ -53,6 +60,21 @@ public class ShoppingList extends JFrame {
 	this.setResizable(true);
 	}
 
+        public void actionPerformed(ActionEvent e) {
+            //Perform actions if the findStore button was clicked
+            if (e.getActionCommand().equalsIgnoreCase("findStore")) {
+                //Pull items from shopping list
+                listOfItems = new String[ShoppingListPanel.LIST_SIZE];
+                for (int i = 0; i < ShoppingListPanel.LIST_SIZE; i++) {
+                    listOfItems[i] = list.getItem(i);
+                    System.out.println("i: "+i+" item: "+listOfItems[i]);
+                }
+                
+                //Repaint
+                this.repaint();
+            }
+        }
+    
 	//Main
 	public static void main(String[] args) {
 		ShoppingList shopper = new ShoppingList();
