@@ -20,7 +20,7 @@ public class ProductParser{
             return partName;
         }
         
-		public void parser(String data)
+ 		public void parser(String data)
 		{
 		
 			partNo ="";
@@ -28,7 +28,8 @@ public class ProductParser{
 			String temp;
 			int position = 0;
 			int count = 0;
-
+                        
+                        System.out.println(data);
 			temp = data.substring(data.indexOf("DPCI")+8);
                         partNo = temp.substring(0,temp.indexOf(",")-1);
 
