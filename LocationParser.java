@@ -1,60 +1,66 @@
-Stores store[];
-String ID;
-String name;
-String temp;
-int position = 0;
-int count;
+public class LocationParser{
 
-public void storeInfo(String data){
-	count = 0;
+	String[] info = new String[10];
+	String ID;
+	String name;
+	String temp;
+	String address;
+	int position = 0;
+	int count;
 
-	temp = substring(data.indexOf("<ID>"));
-	
-		count = count + 4;
-		if(temp.charAt(count)!='T')
-		{
-			count++;
+	public  LocationParser(String data){
+		parser(data);
+	}
+
+	public void parser(String data){
+		count = 0;
+
+		temp = data.substring(data.indexOf("<ID>"));
+		
+			count = count + 4;
+			if(temp.charAt(count)!='T')
+			{
+				count++;
+				while(temp.charAt(count) != '<')
+				{
+					ID = ID + temp.charAt(count);
+					count++;
+				}
+			}
+					
+		String[position] = address;
+		postion++;
+		
+
+		count = 0;
+
+		temp = temp.substring(temp.indexOf("<Name>"));
+			count = count + 6;
 			while(temp.charAt(count) != '<')
 			{
-				ID = ID + temp.charAt(count);
+				name = name + temp.charAt(count);
 				count++;
 			}
-		}
-				
-			
-	
+		
+		String[position] = address;
+		postion++;					
 
-	count = 0;
+		count = 0;
 
-	temp = substring(temp.indexOf("<Name>"));
-		count = count + 6;
-		while(temp.charAt(count) != '<')
-		{
-			name = name + temp.charAt(count);
-			count++;
-		}
-						
+		temp = temp.substring(temp.indexOf("<FormattedAddress>"));
 
-	count = 0;
+			count = count + 18;
+			while(temp.charAt(count) != '<')
+			{
+				address = address + temp.charAt(count);
+				count++;
+			}
 
-	temp = substring(temp.indexOf("<FormattedAddress>"));
+		
+		String[position] = address;
+		postion++;
+		parser(temp);
 
-		count = count + 18;
-		while(temp.charAt(count) != '<')
-		{
-			address = address + temp.charAt(count);
-			count++;
-		}
+	}
 
-	Stores[position]= new store(ID, name, address);
-	position++;
-	storeInfo(temp);
-
-}
-
-public store(String ID, String name, String address)
-{
-	this.ID = ID;
-	this.name= name;
-	this.address = address;
 }
