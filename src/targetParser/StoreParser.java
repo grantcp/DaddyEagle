@@ -1,10 +1,10 @@
 package targetParser;
 
-public class ProductParser{
+public class StoreParser{
 
     String status;
             
-	public ProductParser(String input)
+	public StoreParser(String input)
 	{
 
 		parser(input);
@@ -12,7 +12,7 @@ public class ProductParser{
 	}
 
         public String getStatus() {
-            return getStatus;
+            return status;
         }
         
 
