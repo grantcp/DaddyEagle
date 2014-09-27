@@ -21,6 +21,9 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JButton;
 
+import targetAPICalls.TargetCall;
+import targetParser.*;
+
 public class ShoppingList extends JFrame implements ActionListener {
 
     private LocationPanel location;
@@ -67,8 +70,12 @@ public class ShoppingList extends JFrame implements ActionListener {
                 listOfItems = new String[ShoppingListPanel.LIST_SIZE];
                 for (int i = 0; i < ShoppingListPanel.LIST_SIZE; i++) {
                     listOfItems[i] = list.getItem(i);
-                    System.out.println("i: "+i+" item: "+listOfItems[i]);
                 }
+                
+                //Target API queries & parsing here!
+                ProductParser pParser = new ProductParser(TargetCall.getTargetProduct(listOfItems[0]));
+                System.out.println("PartNo: " + pParser.getPartNo());
+                System.out.println("PartName: " + pParser.getPartName());
                 
                 //Repaint
                 this.repaint();
